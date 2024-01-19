@@ -1,0 +1,80 @@
+
+###################################################################  STREAM API METHODS  ###########################################################################
+
+Intermediate Operations:
+---------------------------------
+
+1.filter(Predicate<T> predicate):
+ Returns a stream consisting of elements that match the given predicate.
+
+Purpose: Used to filter elements based on a given predicate.
+Returns a new stream that includes only the elements that satisfy the specified condition.
+It is primarily used for removing unwanted elements from the stream.
+Example: Filtering out people under the age of 30 in a list of persons
+EXAMPLE-
+  List<Person> peopleUnder30 = people.stream()
+                                  .filter(person -> person.getAge() < 30)
+                                  .collect(Collectors.toList());
+
+filter is used for selecting elements based on a condition, essentially reducing the size of the stream.
+
+2.map(Function<T, R> mapper):
+  Returns a stream consisting of the results of applying the given function to the elements of the stream
+  Purpose: Used to transform each element of the stream using a given function.
+  Returns a new stream containing the results of applying the specified function to each element of the original stream.
+  It is useful for converting or extracting values from the elements in the stream.
+  Example: Extracting names from a list of persons.
+  List<String> names = people.stream()
+                           .map(Person::getName)
+                           .collect(Collectors.toList());
+ map is used for transforming each element in the stream, creating a new stream of the transformed elements.
+
+3 .flatMap(Function<T, Stream<R>> mapper):
+Returns a stream consisting of the concatenated results of applying a function to each element, which results in a stream of streams.
+
+ 4.distinct():
+  Returns a stream consisting of distinct elements based on their natural order or a provided comparator.
+
+5.sorted() / sorted(Comparator<T> comparator):
+ Returns a stream consisting of elements sorted in natural order or using a provided comparator.
+
+6. peek(Consumer<T> action):
+ Returns a stream consisting of the elements of the original stream, additionally performing the provided action on each element.
+
+7.limit(long maxSize):
+Returns a stream consisting of the first maxSize elements of this stream.
+
+8.skip(long n):
+Returns a stream consisting of the remaining elements of this stream after discarding the first n elements.
+
+
+Terminal Operations:
+---------------------------------------
+1.forEach(Consumer<T> action):
+  Performs an action for each element of the stream.
+
+2.toArray():
+Returns an array containing the elements of the stream.
+
+3.collect(Collector<T, A, R> collector):
+Performs a mutable reduction operation on the elements of the stream using a Collector.
+
+4. reduce(T identity, BinaryOperator<T> accumulator) / reduce(BinaryOperator<T> accumulator):
+  Performs a reduction on the elements of the stream using an associative accumulation function and returns an Optional.
+
+5. min(Comparator<T> comparator) / max(Comparator<T> comparator):
+  Returns the minimum or maximum element of the stream according to the provided comparator.
+
+6. count():
+  Returns the count of elements in the stream as a long.
+7. anyMatch(Predicate<T> predicate) / allMatch(Predicate<T> predicate) / noneMatch(Predicate<T> predicate):
+  Check if any, all, or no elements of the stream match the given predicate.
+
+8. findFirst() / findAny():
+  Returns the first or any element of the stream, wrapped in an Optional.
+
+9. iterator():
+Returns an iterator for the elements of the stream.
+
+10.spliterator():
+Returns a spliterator for the elements of the stream.
